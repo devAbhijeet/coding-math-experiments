@@ -31,7 +31,7 @@ let canvas = document.getElementById("canvas"),
   width = (canvas.width = window.innerWidth),
   height = (canvas.height = window.innerHeight),
   angle = 0,
-  angleSpeed = 0.02,
+  angleSpeed = 0.01,
   angleMax = Math.PI * 2;
 
 context.translate(0, height * 0.5);

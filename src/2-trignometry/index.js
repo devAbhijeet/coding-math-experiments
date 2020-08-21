@@ -44,7 +44,7 @@ let clearCanvas = () => {
   context.scale(1, -1);
 };
 
-let generateSinWave = () => {
+let generateSinCosWave = () => {
   let x = angle * 200,
     sinY = Math.sin(angle) * 200,
     cosY = Math.cos(angle) * 200;
@@ -54,7 +54,7 @@ let generateSinWave = () => {
   context.fillStyle = "white";
   context.fill();
   angle = angle >= angleMax ? 0 : angle + angleSpeed;
-  window.requestAnimationFrame(generateSinWave);
+  window.requestAnimationFrame(generateSinCosWave);
 };
 
-window.requestAnimationFrame(generateSinWave);
+window.requestAnimationFrame(generateSinCosWave);

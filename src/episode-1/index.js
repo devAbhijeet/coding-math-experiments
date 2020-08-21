@@ -14,11 +14,11 @@ context.fillRect(0, height * 0.5, width, height * 0.3);
 context.fillStyle = "#5C4033";
 context.fillRect(0, height * 0.8, width, height * 0.2);
 
-context.arc(width - 200, 100, 50, 0, 2 * Math.PI);
 context.fillStyle = "#dbbd7a";
+context.arc(width - 200, 100, 50, 0, 2 * Math.PI);
 context.fill();
 
-for (let index = 0; index < 500; index++) {
+for (let index = 0; index < 1500; index++) {
   let x = Math.random() * width;
   let y = Math.random() * height;
   context.beginPath();

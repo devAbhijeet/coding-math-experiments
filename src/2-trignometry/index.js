@@ -9,11 +9,9 @@
 /*sin(A) = opposite/hypotenous, sin(0) = 0, sin(90) = 1
 cos(A) = adjacent/hypotenous, cos(0) = 1, cos(90) = 0
 tan(A) = opposite/adjacent
-
 radian = 57.3 deg
 pie = 180deg or 3.14
 2pie = 360 deg or 6.28
-
 deg = radians * 180 / pie
 radians = deg * pie / 180
 */

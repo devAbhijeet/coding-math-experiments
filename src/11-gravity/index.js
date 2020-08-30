@@ -53,15 +53,31 @@ saturn.mass = 36;
 uranus.mass = 16;
 neptune.mass = 14.5;
 
-let draw = (color, x, y, radius) => {
+let drawSolarSystem = (color, x, y, radius) => {
   context.beginPath();
   context.fillStyle = color;
   context.arc(x, y, radius, 0, PI * 2, false);
   context.fill();
 };
 
+let particleX = (object) => object.position.getX();
+let particleY = (object) => object.position.getY();
+
+let drawStars = () => {
+  for (let index = 0; index < 1500; index++) {
+    let x = Math.random() * width;
+    let y = Math.random() * height;
+    context.beginPath();
+    context.moveTo(x, y);
+    context.lineTo(x, y + 1);
+    context.strokeStyle = "white";
+    context.stroke();
+  }
+};
+
 let render = () => {
   context.clearRect(0, 0, width, height);
+  drawStars();
   mercury.update(sun);
   venus.update(sun);
   earth.update(sun);
@@ -71,15 +87,15 @@ let render = () => {
   uranus.update(sun);
   neptune.update(sun);
 
-  draw("#ffff00", sun.position.getX(), sun.position.getY(), 40); //Sun
-  draw("gray", mercury.position.getX(), mercury.position.getY(), 5); //Mercury
-  draw("#FFF3B8", venus.position.getX(), venus.position.getY(), 5); //Venus
-  draw("#0000ff", earth.position.getX(), earth.position.getY(), 7); //Earth
-  draw("#A52B2A", mars.position.getX(), mars.position.getY(), 4); //Mars
-  draw("#FF9D46", jupiter.position.getX(), jupiter.position.getY(), 16); //Jupiter
-  draw("#FBD777", saturn.position.getX(), saturn.position.getY(), 12); //Saturn
-  draw("#AFEDEE", uranus.position.getX(), uranus.position.getY(), 9); //Uranus
-  draw("#8ACFF0", neptune.position.getX(), neptune.position.getY(), 9); //Neptune
+  drawSolarSystem("#ffff00", particleX(sun), particleY(sun), 40); //Sun
+  drawSolarSystem("gray", particleX(mercury), particleY(mercury), 5); //Mercury
+  drawSolarSystem("#FFF3B8", particleX(venus), particleY(venus), 5); //Venus
+  drawSolarSystem("#0000ff", particleX(earth), particleY(earth), 7); //Earth
+  drawSolarSystem("#A52B2A", particleX(mars), particleY(mars), 4); //Mars
+  drawSolarSystem("#FF9D46", particleX(jupiter), particleY(jupiter), 16); //Jupiter
+  drawSolarSystem("#FBD777", particleX(saturn), particleY(saturn), 12); //Saturn
+  drawSolarSystem("#AFEDEE", particleX(uranus), particleY(uranus), 9); //Uranus
+  drawSolarSystem("#8ACFF0", particleX(neptune), particleY(neptune), 9); //Neptune
 
   window.requestAnimationFrame(render);
 };

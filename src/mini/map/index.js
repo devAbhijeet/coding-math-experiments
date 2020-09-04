@@ -91,7 +91,7 @@ const render = () => {
 window.requestAnimationFrame(render);
 
 document.body.addEventListener("mousemove", (e) => {
-  context.clearRect(0, 0, width, height);
+  // context.clearRect(0, 0, width, height);
   // drawCircle(e);
   twinkleStars(e);
 });

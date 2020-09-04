@@ -112,8 +112,8 @@ const twinkleStars = (e) => {
   const yAxis = e.clientY;
   const xAxis = e.clientX;
   particles.forEach((p) => {
-    const colorY = Math.floor(map(Math.abs(yAxis - p.y), 0, height, 0, 255));
-    const colorX = Math.floor(map(Math.abs(xAxis - p.y), 0, width, 0, 255));
+    const colorY = Math.floor(map(Math.abs(yAxis - p.y), 0, height, 0, 250));
+    const colorX = Math.floor(map(Math.abs(xAxis - p.y), 0, width, 0, 250));
     const radius = map(yAxis, 0, height, 20, 340);
     const color = rgbToHex(
       colorY,

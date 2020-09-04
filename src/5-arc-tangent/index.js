@@ -53,7 +53,7 @@ let draw = () => {
   context.stroke();
   context.restore();
 
-  circleAngle += circleAngleSpeed;
+  // circleAngle += circleAngleSpeed;
   window.requestAnimationFrame(draw);
 };
 

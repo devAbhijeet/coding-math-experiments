@@ -46,7 +46,6 @@ euler method.
 import "./styles.css";
 import particle from "./particle";
 
-const pie = Math.PI;
 const factor = 0.1;
 
 let canvas = document.getElementById("canvas"),

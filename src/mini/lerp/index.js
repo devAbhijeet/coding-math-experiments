@@ -41,22 +41,33 @@ let minX = 50,
   maxAlpha = 1,
   minRadius = 10,
   maxRadius = 400,
-  normalizedVal = 0;
+  normalizedVal = 0,
+  minColorScale = 0,
+  maxColorScale = 255;
 
 const lerp = (norm, min, max) => (max - min) * norm + min;
+
+const componentToHex = (c) => {
+  const hex = c.toString(16);
+  return hex.length === 1 ? "0" + hex : hex;
+};
+
+const rgbToHex = (r, g, b) =>
+  "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 
 const render = () => {
   const x = lerp(normalizedVal, minX, maxX);
   const y = lerp(normalizedVal, minY, maxY);
   const alpha = lerp(normalizedVal, maxAlpha, minAlpha);
   const radius = lerp(normalizedVal, minRadius, maxRadius);
+  const color = Math.floor(lerp(normalizedVal, maxColorScale, minColorScale));
 
   context.clearRect(0, 0, width, height);
 
   context.beginPath();
   context.globalAlpha = alpha;
-  context.arc(x, y, radius, 0, Math.PI * 2, false);
-  context.fillStyle = "yellow";
+  context.arc(width / 2, height / 2, radius, 0, Math.PI * 2, false);
+  context.fillStyle = rgbToHex(x, y, color);
   context.fill();
 
   normalizedVal += 0.005;

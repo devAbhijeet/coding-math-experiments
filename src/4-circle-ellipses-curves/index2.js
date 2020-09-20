@@ -9,7 +9,7 @@ let centerX = width * 0.5,
   centerY = height * 0.5,
   angle = 0,
   radius = 200,
-  numOfObj = 130,
+  numOfObj = 200,
   slice = (Math.PI * 2) / numOfObj;
 
 for (let index = 0; index < numOfObj; index++) {

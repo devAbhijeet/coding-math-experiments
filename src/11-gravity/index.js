@@ -12,7 +12,7 @@ The above formula can also be written as gravoty = M/Math.square(r), since G is 
 
 A planet has a position vector and mass, It also has a velocity vecotor.
 The planet is pulled towards the center of the earth by the gravity vecotor that's added to the velocity veecotor.
-Gravity vector has a length and angle
+Gravity vector has a length and angles
 
 To find angle of the gravity vectory we need to know to calculate dx and dy between,
 planet and sun, using arc tangent, we can calculate the angle between two obects.

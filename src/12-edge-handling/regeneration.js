@@ -60,6 +60,7 @@ const render = () => {
     if (pY - p.radius > height) {
       p.position.setX(width / 2);
       p.position.setY(height);
+      // p.velocity.setY(p.velocity.getY() * -1);
       p.velocity.setLength(Math.random() * 8 + 15);
       p.velocity.setAngle(-PI / 2 + (Math.random() * 0.2 - 0.1));
     }

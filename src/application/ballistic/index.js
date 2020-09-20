@@ -69,7 +69,7 @@ const shoot = () => {
   cannonBall.position.setY(gun.y + Math.sin(gun.angle) * 60);
   cannonBall.velocity.setLength(15);
   cannonBall.velocity.setAngle(gun.angle);
-  // canShoot = false;
+  canShoot = false;
   update();
 };
 

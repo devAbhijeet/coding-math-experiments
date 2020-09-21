@@ -74,11 +74,11 @@ document.body.addEventListener("mousedown", (e) => {
 });
 
 const shoot = () => {
+  isShooting = true;
   cannonBall.position.setX(gun.x + Math.cos(gun.angle) * 60);
   cannonBall.position.setY(gun.y + Math.sin(gun.angle) * 60);
   cannonBall.velocity.setLength(map(rawForce, -1, 1, 2, 20));
   cannonBall.velocity.setAngle(gun.angle);
-  isShooting = true;
 };
 
 const update = () => {

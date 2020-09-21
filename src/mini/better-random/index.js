@@ -45,41 +45,41 @@ let canvas = document.getElementById("canvas"),
 const draw = () => {
   context.clearRect(0, 0, width, height);
 
-  for (let index = 0; index < 1000; index++) {
+  for (let index = 0; index < 10000; index++) {
     context.beginPath();
     context.arc(
       generateRadomInRange(0, 0.33 * width),
       generateRadomInRange(0, height),
-      generateRadomInRange(5, 10),
+      generateRadomInRange(1, 2),
       0,
       Math.PI * 2,
       false
     );
-    context.fillStyle = "red";
+    context.fillStyle = "orange";
     context.fill();
 
     context.beginPath();
     context.arc(
       generateRadomInRange(width * 0.33, 0.66 * width),
       generateRadomInRange(0, height),
-      generateRadomInRange(5, 10),
+      generateRadomInRange(1, 2),
       0,
       Math.PI * 2,
       false
     );
-    context.fillStyle = "green";
+    context.fillStyle = "white";
     context.fill();
 
     context.beginPath();
     context.arc(
       generateRadomInRange(0.66 * width, width),
       generateRadomInRange(0, height),
-      generateRadomInRange(5, 10),
+      generateRadomInRange(1, 2),
       0,
       Math.PI * 2,
       false
     );
-    context.fillStyle = "blue";
+    context.fillStyle = "green";
     context.fill();
   }
 };

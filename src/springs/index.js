@@ -11,7 +11,7 @@
  * F = K * Distance
  * F = force, acceleration vector
  * K = K is constant represents stiffness of the spring.
- * Distance = distace spring is stretched
+ * Distance = distance spring is stretched
  *
  */
 
@@ -25,20 +25,23 @@ let canvas = document.getElementById("canvas"),
   height = (canvas.height = window.innerHeight);
 
 const k = 0.1;
+const springLength = 100;
 const springPoint = vector.create(width / 2, height / 2);
 const weight = particle.create(
   Math.random() * width,
   Math.random() * height,
   50,
-  Math.random() * Math.PI * 2
+  Math.random() * Math.PI * 2,
+  0.5
 );
 weight.radius = 20;
-weight.friction = 0.7;
+weight.friction = 0.9;
 
 const render = () => {
   context.clearRect(0, 0, width, height);
-  const distace = springPoint.subtract(weight.position);
-  const springForce = distace.multiply(k);
+  const distance = springPoint.subtract(weight.position);
+  distance.setLength(distance.getLength() - springLength);
+  const springForce = distance.multiply(k);
   weight.velocity.addTo(springForce);
   weight.update();
 

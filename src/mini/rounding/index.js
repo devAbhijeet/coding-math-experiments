@@ -53,7 +53,7 @@ document.addEventListener("mousemove", (e) => {
   let y = roundNearest(e.clientY, gridSize);
 
   context.beginPath();
-  context.arc(x, y, 10, 0, Math.Pi * 2, false);
+  context.arc(x, y, 10, 0, Math.PI * 2, false);
   context.fillStyle = "#fff";
   context.fill();
 });

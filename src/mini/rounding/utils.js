@@ -11,6 +11,6 @@ export const roundToPlaces = (value, places) => {
 How do we round the value 113 to a nearest value that is a multiple of 40
 The nearest value that is multiple of 40 for 113 is 120
 To calculate that divide 113/40, now round that value, multiply that rounded value by 40*/
-export const roundNearest = (value, nearest) => {
-  return Math.round(value / nearest) * nearest;
+export const roundNearest = (value, gridSize) => {
+  return Math.round(value / gridSize) * gridSize;
 };

@@ -8,9 +8,6 @@ export const map = (norm, sourceMin, sourceMax, destMin, destMax) =>
 export const generateRadomInRange = (min, max) =>
   Math.round(min + Math.random() * (max - min));
 
-export const generateRadomInRangePristine = (min, max) =>
-  min + Math.random() * (max - min);
-
 export const radsToDegrees = (radians) => (radians * 180) / Math.PI;
 
 /*Let's say we have grid size of 40 and we get a input value 113
@@ -80,4 +77,26 @@ export const randomDist = (min, max, iterations) => {
     total += generateRadomInRange(min, max);
   }
   return total / iterations;
+};
+
+export const quadraticBezier = (p0, p1, p2, t, pFinal) => {
+  pFinal = pFinal || {};
+  pFinal.x = Math.pow(1 - t, 2) * p0.x + (1 - t) * 2 * t * p1.x + t * t * p2.x;
+  pFinal.y = Math.pow(1 - t, 2) * p0.y + (1 - t) * 2 * t * p1.y + t * t * p2.y;
+  return pFinal;
+};
+
+export const cubicBezier = (p0, p1, p2, p3, t, pFinal) => {
+  pFinal = pFinal || {};
+  pFinal.x =
+    Math.pow(1 - t, 3) * p0.x +
+    Math.pow(1 - t, 2) * 3 * t * p1.x +
+    (1 - t) * 3 * t * t * p2.x +
+    t * t * t * p3.x;
+  pFinal.y =
+    Math.pow(1 - t, 3) * p0.y +
+    Math.pow(1 - t, 2) * 3 * t * p1.y +
+    (1 - t) * 3 * t * t * p2.y +
+    t * t * t * p3.y;
+  return pFinal;
 };

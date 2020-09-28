@@ -9,10 +9,11 @@ let canvas = document.getElementById("canvas"),
 let requestId = null;
 const centerX = width / 2;
 const centerY = height / 2;
-const circleMaxRadius = 200;
+const circleRadiusIncFactor = 1.5;
+let circleMaxRadius = 200;
 const circleMaxAngle = Math.PI * 2;
 
-const numParticles = 10000;
+const numParticles = 5000;
 const particles = [];
 
 for (let i = 0; i < numParticles; i++) {
@@ -61,6 +62,7 @@ const render = () => {
     context.fillStyle = "yellow";
     context.fill();
   }
+  circleMaxRadius += circleRadiusIncFactor;
   requestId = window.requestAnimationFrame(render);
 };
 

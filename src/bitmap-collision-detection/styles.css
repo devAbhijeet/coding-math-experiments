@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+  background: black;
+}
+
+canvas.bitmap {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.target {
+  display: none;
+}
+
+.target.show {
+  display: block;
+}

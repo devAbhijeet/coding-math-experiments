@@ -3,7 +3,7 @@
  * In 3D we deal with x, y and z coordinate. The z axis stands for depth.
  *
  * The camera or human eyes determine 3D based on a simple perspective clue.
- * The clus is how far the object they are looking at is.
+ * The clue is how far the object they are looking at is.
  *
  * The clues that gives us the perception of 3D are.
  * position, size, layers, aerial perspective.

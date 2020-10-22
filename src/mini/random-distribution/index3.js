@@ -28,7 +28,7 @@ let canvas = document.getElementById("canvas"),
   width = (canvas.width = window.innerWidth),
   height = (canvas.height = window.innerHeight);
 
-const particles = 1;
+const particles = 10;
 const iterations = 5;
 
 const draw = () => {

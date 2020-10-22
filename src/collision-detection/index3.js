@@ -11,7 +11,7 @@
  */
 
 import "./styles.css";
-import { pointInRect } from "./utils";
+import { isRectPointCollide } from "./utils";
 
 let canvas = document.getElementById("canvas"),
   context = canvas.getContext("2d"),
@@ -27,7 +27,7 @@ const rect = {
 
 document.body.addEventListener("mousemove", (e) => {
   context.clearRect(0, 0, width, height);
-  if (pointInRect(e.clientX, e.clientY, rect)) {
+  if (isRectPointCollide(e.clientX, e.clientY, rect)) {
     context.fillStyle = "#ff6666";
   } else {
     context.fillStyle = "#999999";

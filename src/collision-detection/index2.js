@@ -11,7 +11,7 @@
  */
 
 import "./styles.css";
-import { circlePointCollision } from "./utils";
+import { isCirclePointCollide } from "./utils";
 
 const PI = Math.PI;
 
@@ -27,7 +27,7 @@ const circle1 = {
 };
 
 document.body.addEventListener("mousemove", (e) => {
-  if (circlePointCollision(e.clientX, e.clientY, circle1)) {
+  if (isCirclePointCollide(e.clientX, e.clientY, circle1)) {
     context.fillStyle = "red";
   } else {
     context.fillStyle = "blue";

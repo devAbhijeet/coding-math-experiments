@@ -1,18 +1,3 @@
-/**
- *
- * Easing is when an object moves from one position to the target position.
- * Consider there's an object at position x and we want to move @ posotion y.
- * To do that we calculate the distance between x and y and multiply that
- * distance with easing factor.
- *
- * x = (target.x - object.x) * easingFactor
- * y = (target.y - object.y) * easingFactor
- *
- * However, the above point highkights a paradox. Each time the distance is
- * reduced, the next distance that is calculated get shorter ans shorter,
- * i.e, dividing a distance by 2 then again by 2 then againg by 2 and so on
- *
- */
 import "./styles.css";
 
 let canvas = document.getElementById("canvas"),
@@ -31,6 +16,8 @@ let target = {
 };
 
 let ease = 0.1;
+let angle = 0;
+let angleSpeed = 0.1;
 
 const render = () => {
   context.clearRect(0, 0, width, height);
@@ -43,8 +30,10 @@ const render = () => {
   const dx = target.x - object.x,
     dy = target.y - object.y;
 
-  object.x += dx * ease;
-  object.y += dy * ease;
+  object.x += angle * ease;
+  object.y += Math.sin(angle) * (dy * ease);
+  angle+=angleSpeed
+
   requestAnimationFrame(render);
 };
 

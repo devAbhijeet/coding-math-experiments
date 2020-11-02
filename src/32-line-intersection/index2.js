@@ -37,6 +37,11 @@ const canvas = document.getElementById("canvas"),
   width = (canvas.width = window.innerWidth),
   height = (canvas.height = window.innerHeight);
 
+context.strokeStyle = "#fff";
+context.fillStyle = "#fff";
+
+let clickPoints = null;
+
 const p0 = {
   x: 100,
   y: 100
@@ -71,17 +76,63 @@ const lineIntersect = (p0, p1, p2, p3) => {
   };
 };
 
-context.strokeStyle = "#fff";
+const drawPoints = (p) => {
+  context.beginPath();
+  context.arc(p.x, p.y, 10, 0, Math.PI * 2, false);
+  context.fill();
+};
 
-context.beginPath();
-context.moveTo(p0.x, p0.y);
-context.lineTo(p1.x, p1.y);
-context.moveTo(p2.x, p2.y);
-context.lineTo(p3.x, p3.y);
-context.stroke();
+const render = () => {
+  context.clearRect(0, 0, width, height);
 
-const intersect = lineIntersect(p0, p1, p2, p3);
+  drawPoints(p0);
+  drawPoints(p1);
+  drawPoints(p2);
+  drawPoints(p3);
 
-context.beginPath();
-context.arc(intersect.x, intersect.y, 20, 0, Math.PI * 2, false);
-context.stroke();
+  context.beginPath();
+  context.moveTo(p0.x, p0.y);
+  context.lineTo(p1.x, p1.y);
+  context.moveTo(p2.x, p2.y);
+  context.lineTo(p3.x, p3.y);
+  context.stroke();
+
+  const intersect = lineIntersect(p0, p1, p2, p3);
+
+  context.beginPath();
+  context.arc(intersect.x, intersect.y, 20, 0, Math.PI * 2, false);
+  context.stroke();
+};
+
+const getClickPoints = (x, y) => {
+  const points = [p0, p1, p2, p3];
+  const closestPoint = points.filter((p) => {
+    const dx = p.x - x;
+    const dy = p.y - y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    return distance < 10;
+  });
+  return closestPoint.length > 0 ? closestPoint.pop() : null;
+};
+
+const handleMouseMove = (e) => {
+  clickPoints.x = e.clientX;
+  clickPoints.y = e.clientY;
+  render();
+};
+
+const handleMouseUp = () => {
+  document.removeEventListener("mousemove", handleMouseMove);
+  document.removeEventListener("mouseup", handleMouseUp);
+};
+
+const handleMouseDown = (e) => {
+  clickPoints = getClickPoints(e.clientX, e.clientY);
+  if (clickPoints) {
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  }
+};
+
+document.addEventListener("mousedown", handleMouseDown);
+render();

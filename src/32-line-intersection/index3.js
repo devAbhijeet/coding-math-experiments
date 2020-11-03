@@ -59,7 +59,7 @@ const p3 = {
   y: 600
 };
 
-const lineIntersect = (p0, p1, p2, p3) => {
+const segmentIntersect = (p0, p1, p2, p3) => {
   const A1 = p1.y - p0.y;
   const B1 = p0.x - p1.x;
   const C1 = A1 * p0.x + B1 * p0.y;
@@ -74,10 +74,23 @@ const lineIntersect = (p0, p1, p2, p3) => {
     return null;
   }
 
-  return {
-    x: (B2 * C1 - B1 * C2) / denominator,
-    y: (A1 * C2 - A2 * C1) / denominator
-  };
+  const intersectX = (B2 * C1 - B1 * C2) / denominator;
+  const intersectY = (A1 * C2 - A2 * C1) / denominator;
+  const rx0 = (intersectX - p0.x) / (p1.x - p0.x);
+  const ry0 = (intersectY - p0.y) / (p1.y - p0.y);
+  const rx1 = (intersectX - p2.x) / (p3.x - p2.x);
+  const ry1 = (intersectY - p2.y) / (p3.y - p2.y);
+  if (
+    ((rx0 >= 0 && rx0 <= 1) || (ry0 >= 0 && ry0 <= 1)) &&
+    ((rx1 >= 0 && rx1 <= 1) || (ry1 >= 0 && ry1 <= 1))
+  ) {
+    return {
+      x: intersectX,
+      y: intersectY
+    };
+  } else {
+    return null;
+  }
 };
 
 const drawPoints = (p) => {
@@ -101,7 +114,7 @@ const render = () => {
   context.lineTo(p3.x, p3.y);
   context.stroke();
 
-  const intersect = lineIntersect(p0, p1, p2, p3); //To prevent against parallel, collinear(Same y intersept and line segments),
+  const intersect = segmentIntersect(p0, p1, p2, p3); //To prevent against parallel, collinear(Same y intersept and line segments),
 
   if (intersect) {
     context.beginPath();

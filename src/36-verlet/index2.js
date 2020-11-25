@@ -40,6 +40,7 @@
  */
 
 import "./styles.css";
+import img from "./me.jpg";
 
 const canvas = document.getElementById("canvas"),
   context = canvas.getContext("2d"),
@@ -53,26 +54,26 @@ const points = [
   {
     x: 100,
     y: 100,
-    oldx: 85,
-    oldy: 95
+    oldx: 100 + Math.random() * 100 - 50,
+    oldy: 100 + Math.random() * 100 - 50
   },
   {
-    x: 200,
+    x: 420,
     y: 100,
-    oldx: 200,
+    oldx: 420,
     oldy: 100
   },
   {
-    x: 200,
-    y: 200,
-    oldx: 200,
-    oldy: 200
+    x: 420,
+    y: 340,
+    oldx: 420,
+    oldy: 340
   },
   {
     x: 100,
-    y: 200,
+    y: 340,
     oldx: 100,
-    oldy: 200
+    oldy: 340
   }
 ];
 
@@ -86,7 +87,9 @@ const sticks = [
   {
     p0: points[0],
     p1: points[1],
-    length: distance(points[0], points[1])
+    length: distance(points[0], points[1]),
+    color: "red",
+    width: 5
   },
   {
     p0: points[1],
@@ -108,6 +111,26 @@ const sticks = [
     p1: points[2],
     length: distance(points[0], points[2]),
     hidden: true
+  }
+];
+
+const loadImage = (img) => {
+  const imgElem = document.createElement("img");
+  imgElem.src = img;
+  return imgElem;
+};
+
+const forms = [
+  {
+    path: [points[0], points[1], points[2], points[3]],
+    color: "green"
+  }
+];
+
+const images = [
+  {
+    path: [points[0], points[1], points[2], points[3]],
+    img: loadImage(img)
   }
 ];
 
@@ -153,11 +176,6 @@ const constraintPoints = () => {
 
 const renderPoints = () => {
   context.clearRect(0, 0, width, height);
-  points.forEach((p) => {
-    context.beginPath();
-    context.arc(p.x, p.y, 5, 0, Math.PI * 2, false);
-    context.fill();
-  });
 };
 
 const updateSticks = () => {
@@ -177,14 +195,46 @@ const updateSticks = () => {
 };
 
 const renderSticks = () => {
-  context.beginPath();
   sticks.forEach((s) => {
     if (!s.hidden) {
+      context.beginPath();
+      context.strokeStyle = s.color ? s.color : "white";
+      context.lineWidth = s.width ? s.width : "1";
       context.moveTo(s.p0.x, s.p0.y);
       context.lineTo(s.p1.x, s.p1.y);
+      context.stroke();
     }
   });
-  context.stroke();
+};
+
+const renderForms = () => {
+  for (let i = 0; i < forms.length; i++) {
+    const f = forms[i];
+    context.beginPath();
+    context.fillStyle = f.color;
+    context.moveTo(f.path[0].x, f.path[0].y);
+    for (let j = 1; j < f.path.length; j++) {
+      context.lineTo(f.path[j].x, f.path[j].y);
+    }
+  }
+  context.fill();
+};
+
+const renderImages = () => {
+  for (let i = 0; i < images.length; i++) {
+    const image = images[i];
+    const height = distance(image.path[0], image.path[1]);
+    const width = distance(image.path[0], image.path[3]);
+    const dx = image.path[1].x - image.path[0].x;
+    const dy = image.path[1].y - image.path[0].y;
+    const angle = Math.atan2(dy, dx);
+
+    context.save();
+    context.translate(image.path[0].x, image.path[0].y);
+    context.rotate(angle);
+    context.drawImage(image.img, 0, 0, width, height);
+    context.restore();
+  }
 };
 
 const render = () => {
@@ -192,7 +242,9 @@ const render = () => {
   updateSticks();
   constraintPoints();
   renderPoints();
-  renderSticks();
+  // renderSticks();
+  // renderForms();
+  renderImages();
   requestAnimationFrame(render);
 };
 
